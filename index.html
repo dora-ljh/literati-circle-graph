@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#02030A" />
+    <title>诗云星图</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html, body { background: #02030A; margin: 0; }
+      #boot-loader {
+        position: fixed; inset: 0; z-index: 9999;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        background: radial-gradient(ellipse at center, #0A0B1F 0%, #02030A 70%);
+        font-family: 'Noto Serif SC', 'Songti SC', serif;
+        color: #E8C16C;
+        transition: opacity 0.7s ease-out;
+      }
+      #boot-loader.hidden { opacity: 0; pointer-events: none; }
+      #boot-loader .ring {
+        position: relative; width: 120px; height: 120px; margin-bottom: 28px;
+      }
+      #boot-loader .ring::before,
+      #boot-loader .ring::after {
+        content: ''; position: absolute; inset: 0;
+        border-radius: 50%;
+        border: 1px solid rgba(232, 193, 108, 0.18);
+        border-top-color: rgba(232, 193, 108, 0.85);
+        animation: bl-spin 1.6s linear infinite;
+      }
+      #boot-loader .ring::after {
+        inset: 18px;
+        border-color: rgba(111, 200, 229, 0.12);
+        border-top-color: rgba(111, 200, 229, 0.7);
+        animation-direction: reverse;
+        animation-duration: 2.4s;
+      }
+      #boot-loader .core {
+        position: absolute; left: 50%; top: 50%;
+        width: 8px; height: 8px;
+        background: #FFE7C9;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 12px 3px rgba(232, 193, 108, 0.65),
+                    0 0 28px 8px rgba(232, 193, 108, 0.25);
+        animation: bl-pulse 1.8s ease-in-out infinite;
+      }
+      #boot-loader .title {
+        font-size: 22px; letter-spacing: 0.45em; padding-left: 0.45em;
+        text-shadow: 0 0 12px rgba(232, 193, 108, 0.45);
+        animation: bl-fade 2.2s ease-in-out infinite;
+      }
+      #boot-loader .hint {
+        margin-top: 10px;
+        font-size: 12px; letter-spacing: 0.3em; padding-left: 0.3em;
+        color: rgba(232, 193, 108, 0.55);
+        font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      }
+      @keyframes bl-spin { to { transform: rotate(360deg); } }
+      @keyframes bl-pulse {
+        0%, 100% { transform: translate(-50%, -50%) scale(0.85); opacity: 0.7; }
+        50%      { transform: translate(-50%, -50%) scale(1.25); opacity: 1; }
+      }
+      @keyframes bl-fade {
+        0%, 100% { opacity: 0.55; }
+        50%      { opacity: 1; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="boot-loader">
+      <div class="ring"><div class="core"></div></div>
+      <div class="title">诗云星图</div>
+      <div class="hint">STAR · MAP · LOADING</div>
+    </div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
